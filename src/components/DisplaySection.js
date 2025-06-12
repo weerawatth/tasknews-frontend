@@ -32,10 +32,10 @@ function DisplaySection({ onTaskUpdate }) {
       }
 
       const [controlRes, committeeRes] = await Promise.all([
-        axios.get('http://localhost:5000/api/tasks', {
+        axios.get('https://tasknews-backend.onrender.com/api/tasks', {
           headers: { Authorization: `Bearer ${token}` }
         }),
-        axios.get('http://localhost:5000/api/committee', {
+        axios.get('https://tasknews-backend.onrender.com/api/committee', {
           headers: { Authorization: `Bearer ${token}` }
         })
       ]);
@@ -147,13 +147,13 @@ function DisplaySection({ onTaskUpdate }) {
       try {
         const token = localStorage.getItem('token');
         if (type === 'control') {
-          await axios.delete('http://localhost:5000/api/tasks', {
+          await axios.delete('https://tasknews-backend.onrender.com/api/tasks', {
             headers: { Authorization: `Bearer ${token}` }
           });
           setControlTasks([]);
           setControlPage(1);
         } else if (type === 'committee') {
-          await axios.delete('http://localhost:5000/api/committee', {
+          await axios.delete('https://tasknews-backend.onrender.com/api/committee', {
             headers: { Authorization: `Bearer ${token}` }
           });
           setCommitteeTasks([]);

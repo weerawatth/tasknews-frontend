@@ -29,10 +29,10 @@ function CommitteeSection() {
   const fetchTasks = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:5000/api/tasks', {
+      const res = await axios.get('https://tasknews-backend.onrender.com/api/tasks', {
         headers: { Authorization: `Bearer ${token}` }
       });
-      const committeeRes = await axios.get('http://localhost:5000/api/committee', {
+      const committeeRes = await axios.get('https://tasknews-backend.onrender.com/api/committee', {
         headers: { Authorization: `Bearer ${token}` }
       });
       console.log('Fetched tasks from /api/tasks:', res.data);
@@ -69,7 +69,7 @@ function CommitteeSection() {
       let committeeId = task.committeeId;
       if (!committeeId) {
         const committeeTask = { taskId: task._id, startTime: new Date(), status: task.status };
-        const res = await axios.post('http://localhost:5000/api/committee', committeeTask, {
+        const res = await axios.post('https://tasknews-backend.onrender.com/api/committee', committeeTask, {
           headers: { Authorization: `Bearer ${token}` }
         });
         committeeId = res.data._id;
@@ -125,7 +125,7 @@ function CommitteeSection() {
 
       if (notes) {
         const updatedTask = { endTime: new Date(), notes };
-        await axios.put(`http://localhost:5000/api/committee/${committeeId}`, updatedTask, {
+        await axios.put(`https://tasknews-backend.onrender.com/api/committee/${committeeId}`, updatedTask, {
           headers: { Authorization: `Bearer ${token}` }
         });
         await fetchTasks();

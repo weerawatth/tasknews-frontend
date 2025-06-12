@@ -56,7 +56,7 @@ function ControlSection() {
     try {
       const token = localStorage.getItem('token');
       if (!token) throw new Error('กรุณาเข้าสู่ระบบก่อน');
-      const res = await axios.get('http://localhost:5000/api/tasks', {
+      const res = await axios.get('https://tasknews-backend.onrender.com/api/tasks', {
         headers: { Authorization: `Bearer ${token}` }
       });
       console.log('Fetched tasks:', res.data);
@@ -85,14 +85,14 @@ function ControlSection() {
       console.log('Submitting task data:', taskData); // ตรวจสอบข้อมูลก่อนส่ง
       let res;
       if (editTask) {
-        res = await axios.put(`http://localhost:5000/api/tasks/${editTask._id}`, taskData, {
+        res = await axios.put(`https://tasknews-backend.onrender.com/api/tasks/${editTask._id}`, taskData, {
           headers: { Authorization: `Bearer ${token}` }
         });
         console.log('Edit response:', res.data);
         Swal.fire('สำเร็จ!', 'แก้ไขงานเรียบร้อย', 'success');
         setEditTask(null);
       } else {
-        res = await axios.post('http://localhost:5000/api/tasks', taskData, {
+        res = await axios.post('https://tasknews-backend.onrender.com/api/tasks', taskData, {
           headers: { Authorization: `Bearer ${token}` }
         });
         console.log('Add response:', res.data);
@@ -133,7 +133,7 @@ function ControlSection() {
     if (result.isConfirmed) {
       try {
         const token = localStorage.getItem('token');
-        await axios.delete(`http://localhost:5000/api/tasks/${id}`, {
+        await axios.delete(`https://tasknews-backend.onrender.com/api/tasks/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         Swal.fire('ลบสำเร็จ!', 'งานถูกลบเรียบร้อย', 'success');
@@ -160,7 +160,7 @@ function ControlSection() {
         status: editTask.status
       };
       console.log('Submitting edited task data:', taskData);
-      const res = await axios.put(`http://localhost:5000/api/tasks/${editTask._id}`, taskData, {
+      const res = await axios.put(`https://tasknews-backend.onrender.com/api/tasks/${editTask._id}`, taskData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       console.log('Edit response:', res.data);

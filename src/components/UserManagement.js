@@ -11,7 +11,7 @@ function UserManagement() {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/auth/users');
+      const res = await axios.get('https://tasknews-backend.onrender.com/api/auth/users');
       setUsers(res.data);
     } catch (err) {
       console.error('Error fetching users:', err);
@@ -21,7 +21,7 @@ function UserManagement() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/auth/register', form);
+      await axios.post('https://tasknews-backend.onrender.com/api/auth/register', form);
       setForm({ username: '', password: '', role: 'user' });
       fetchUsers();
     } catch (err) {
@@ -32,14 +32,14 @@ function UserManagement() {
   const handleEdit = async (id) => {
     const { username, password, role } = promptForUserDetails(users.find(u => u._id === id));
     if (username && password && role) {
-      await axios.put(`http://localhost:5000/api/auth/users/${id}`, { username, password, role });
+      await axios.put(`https://tasknews-backend.onrender.com/api/auth/users/${id}`, { username, password, role });
       fetchUsers();
     }
   };
 
   const handleDelete = async (id) => {
     if (window.confirm('ยืนยันการลบผู้ใช้?')) {
-      await axios.delete(`http://localhost:5000/api/auth/users/${id}`);
+      await axios.delete(`https://tasknews-backend.onrender.com/api/auth/users/${id}`);
       fetchUsers();
     }
   };

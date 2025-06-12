@@ -10,7 +10,7 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/register', form);
+      const res = await axios.post('https://tasknews-backend.onrender.com/api/auth/register', form);
       if (res.data.message === 'สมัครสมาชิกสำเร็จ') {
         alert('สมัครสมาชิกสำเร็จ! กรุณาเข้าสู่ระบบ');
         history.push('/');
